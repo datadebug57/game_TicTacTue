@@ -1,0 +1,28 @@
+#
+#
+Sebuah template game online yang mendukung pendaftaran, login, menu deposit, menu withdraw. halaman admin yang di gunakan untuk mengatur saldo pemain dengan sangat mudah.
+#
+#
+Pemain akan mendapatkan saldo sebesar Rp2.000.00 secara gratis ketika pendaftaran. Pemain juga dapat melakukan deposit minimal Rp10.000.00 maksimal Rp100.000.00 agar dapat bermain terus menerus untuk mengisi waktu senggang. 
+#
+#
+kemenangan pemain di atur sedemikian rupa agar admin tidak terlalu memikirkan saldo yang terus berkurang sehingga admin hanya perlu mengamati pesan yang di kirim ke telegram.
+#
+#
+Jika pemain menang maka akan menerima penambahan saldo sebesar Rp1.000.00; Jika pemain kalah maka akan menerima pengurangan saldo sebesar Rp1.000.00 . Namun jika permainan menghasilkan `seri` maka tidak akan menerima penambahan ataupun pengurangan saldo.
+#
+#
+Ini adalah real template game senang senang, jangan di gunakan untuk keperluan yang merugikan sepihak. gunakanlah untuk keperluan senang senang bersama teman dan keluarga.
+#
+#
+#
+#
+#
+
+
+Pastikan untuk mengatur `status` pemain dalam keadaan `active` bukan `panding` di pengaturan admin.
+#
+#
+#
+# HANYA TEMPLATE, TAMBAHKAN KODE PADA BAGIAN WITHDRAW UNTUK BELAJAR MEMBUAT KODE
+
