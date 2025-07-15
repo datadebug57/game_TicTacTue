@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>GAME FUNNY – Debug Mode</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111 url('https://i.ibb.co/MfSPBfr/bg-pattern.jpg') repeat;
+      color: #fff;
+      margin: 0;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: 60px auto;
+      padding: 30px;
+      background: rgba(0,0,0,0.85);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,0,0,.5);
+    }
+    h1 { color: #f90 }
+    label { display: block; margin-top: 14px; text-align: left }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      margin-top: 6px;
+    }
+    button {
+      background: red;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 18px;
+    }
+    .hidden { display: none }
+    .btn { background: red; margin: 10px auto }
+    .logo { display: block; margin: 0 auto 18px; max-width: 150px }
+    .logOutput {
+      white-space: pre-wrap;
+      color: #0f0;
+      padding: 10px;
+      background: #000;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="registerSection">
+  <img src="https://private-user-images.githubusercontent.com/149355613/325362262-4ed19c0b-b318-4113-8cff-d3ed340d2e69.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTI1MzkyMzIsIm5iZiI6MTc1MjUzODkzMiwicGF0aCI6Ii8xNDkzNTU2MTMvMzI1MzYyMjYyLTRlZDE5YzBiLWIzMTgtNDExMy04Y2ZmLWQzZWQzNDBkMmU2OS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNzE1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDcxNVQwMDIyMTJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mZWMwMzJiZmQyM2JiYzNmOWNmYjM1NTlhZWIwYzkxNjc4YTNhMGQ0YWQyZDU2MjVjZDY5ZDYxNGVlNTgxODMzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.Sl8bRM5YHGPPeVGcEvkii66VULsRWKlGZ583c-QFAOg" class="logo">
+  <h1>Daftar</h1>
+  <form id="registerForm">
+    <label>Username</label><input id="regUsername" required>
+    <label>Password</label><input type="password" id="regPassword" required minlength="4">
+    <label>No. WhatsApp</label><input id="regWa" required>
+    <label>Bank</label>
+    <select id="regBank" required>
+      <option value="">-- Pilih Bank --</option>
+      <option>BCA</option><option>BNI</option><option>BRI</option>
+      <option>MANDIRI</option><option>DANA</option><option>OVO</option><option>GOPAY</option>
+    </select>
+    <label>No. Rekening / E‑wallet</label><input id="regRek" required>
+    <label>Nama Rekening</label><input id="regNama" required>
+    <button type="submit">Daftar Sekarang</button>
+  </form>
+  <button type="button" onclick="showLogin()">Sudah punya akun? Login</button>
+  <div class="logOutput" id="registerLog"></div>
+</div>
+
+<div class="container hidden" id="loginSection">
+  <h1>Login</h1>
+  <form id="loginForm">
+    <label>Username</label><input id="loginUsername" required>
+    <label>Password</label><input type="password" id="loginPassword" required>
+    <button type="submit">Login</button>
+  </form>
+  <button type="button" onclick="showRegister()">Belum punya akun?</button>
+  <div class="logOutput" id="loginLog"></div>
+</div>
+
+<div class="container hidden" id="dashboardSection">
+  <h1>Selamat Datang, <span id="userDisplay"></span></h1>
+  <p>💰 Saldo Anda: Rp<span id="userSaldo">0</span></p>
+  <p>Status : <span id="userStatus">-</span></p>
+<button class="btn" id="playBtn" onclick="mulaiGame()">🎮 Bermain</button>
+
+<div id="notice" style="margin-top: 10px; font-size: 16px; color: #f1c40f;"></div>
+
+<script>
+  function mulaiGame() {
+  if (!currentUser) {
+    document.getElementById("notice").textContent = "⚠️ Login tidak valid";
+    return;
+  }
+  document.getElementById("notice").textContent = "🔄 Mengalihkan ke permainan...";
+  setTimeout(() => {
+    window.location.href = `game.html?username=${encodeURIComponent(currentUser)}`;
+  }, 800);
+}
+
+</script>
+
+
+  <button class="btn" onclick="showDeposit()">💰 Deposit</button>
+  <button class="btn" onclick="alert('Hubungi admin untuk withdraw')">📤 Withdraw</button>
+  <button class="btn" onclick="logout()">🚪 Logout</button>
+</div>
+
+<div class="container hidden" id="depositSection">
+  <h1>Form Deposit</h1>
+  <p>Silakan transfer ke rekening Admin berikut:</p>
+  <p><strong>Nama Admin:</strong> ARDI ANTO</p>
+  <p><strong>Rekening Admin:</strong> 082279447123 (DANA)</p>
+  <form id="depositForm">
+    <label>Nama Rekening Anda</label><input id="userNamaRek" required>
+    <label>No. Rekening Anda</label><input id="userNoRek" required>
+    <label>Nominal Deposit (Rp)</label><input id="depositNominal" type="number" min="10000" max="100000" required>
+    <button type="submit">Kirim Bukti Deposit</button>
+  </form>
+  <button type="button" onclick="showDashboard(currentUser)">Kembali</button>
+  <div class="logOutput" id="depositLog"></div>
+</div>
+
+<script>
+const telegramToken = "";
+const chatId = "";
+const GH_OWNER = "";
+const GH_REPO = "";
+const GH_PATH = "users.json";
+const GH_TOKEN = "";
+const API_ROOT = "https://api.github.com";
+
+let _fileSHA = "";
+let currentUser = null;
+
+function showRegister(){toggleSection('registerSection');}
+function showLogin(){toggleSection('loginSection');}
+function showDashboard(u){
+  toggleSection('dashboardSection');
+  userDisplay.textContent = u.username;
+  userSaldo.textContent = u.saldo.toLocaleString();
+  userStatus.textContent = u.status;
+  document.getElementById("playBtn").style.display = (u.status === "active") ? "block" : "none";
+}
+function showDeposit(){toggleSection('depositSection');}
+function toggleSection(id){
+  ['registerSection','loginSection','dashboardSection','depositSection'].forEach(i => document.getElementById(i).classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+function logout(){
+  localStorage.removeItem("currentUser");
+  currentUser = null;
+  showLogin();
+}
+
+async function githubRequest(url, method="GET", body=null){
+  const opt = {
+    method,
+    headers:{
+      "Accept":"application/vnd.github+json",
+      "Authorization":"Bearer "+GH_TOKEN,
+      "X-GitHub-Api-Version":"2022-11-28"
+    }
+  };
+  if(body) opt.body = JSON.stringify(body);
+  const r = await fetch(url,opt);
+  if(!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+
+async function loadUsers(){
+  const url = `${API_ROOT}/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`;
+  const data = await githubRequest(url);
+  _fileSHA = data.sha;
+  const jsonStr = atob(data.content.replace(/\n/g,""));
+  return JSON.parse(jsonStr || "[]");
+}
+
+async function saveUsers(list){
+  const newContent = btoa(JSON.stringify(list,null,2));
+  const url = `${API_ROOT}/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`;
+  const body = {
+    message: "update users.json",
+    content: newContent,
+    sha: _fileSHA
+  };
+  const res = await githubRequest(url,"PUT",body);
+  _fileSHA = res.content.sha;
+}
+
+document.getElementById("registerForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const log = document.getElementById("registerLog");
+  const newUser = {
+    username : regUsername.value.trim(),
+    password : regPassword.value,
+    whatsapp : regWa.value,
+    bank     : regBank.value,
+    rekening : regRek.value,
+    nama     : regNama.value,
+    saldo    : 2000,
+    status   : "active",
+    created  : new Date().toISOString()
+  };
+  try {
+    const users = await loadUsers();
+    if(users.find(u => u.username === newUser.username)) return alert("Username sudah ada!");
+    users.push(newUser);
+    await saveUsers(users);
+    log.innerText = "✅ Pendaftaran berhasil! Silakan login.";
+    this.reset();
+    showLogin();
+  } catch(err){
+    log.innerText = "❌ Pendaftaran gagal:\n" + err.message;
+  }
+});
+
+document.getElementById("loginForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const log = document.getElementById("loginLog");
+  try {
+    const users = await loadUsers();
+    const u = users.find(u => u.username === loginUsername.value.trim());
+    if(!u) return alert("Username tidak ditemukan");
+    if(u.password !== loginPassword.value) return alert("Password salah");
+
+    currentUser = u.username;
+    localStorage.setItem("currentUser", currentUser);
+    showDashboard(u);
+  } catch(err){
+    log.innerText = "❌ Server gagal:\n" + err.message;
+  }
+});
+
+document.getElementById("depositForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const log = document.getElementById("depositLog");
+  const nama = userNamaRek.value.trim();
+  const norek = userNoRek.value.trim();
+  const nominal = parseInt(depositNominal.value);
+  if (nominal < 10000 || nominal > 100000) return alert("❌ Nominal tidak valid!");
+
+  const msg = `📥 *DEPOSIT BARU*\n\n👤 User: ${currentUser}\n🏦 Nama Rek: ${nama}\n🔢 No. Rek: ${norek}\n💰 Nominal: Rp${nominal.toLocaleString()}`;
+  try {
+    await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: "Markdown" })
+    });
+    log.innerText = "✅ Deposit sedang di proses, silahkan kembali.";
+    this.reset();
+  } catch(err){
+    log.innerText = "❌ Gagal terkirim:\n" + err.message;
+  }
+});
+
+(async function init(){
+  const curr = localStorage.getItem("currentUser");
+  if (curr) {
+    currentUser = curr;
+    try {
+      const users = await loadUsers();
+      const u = users.find(x => x.username === curr);
+      if (!u) {
+        logout();
+        return alert("Akun tidak ditemukan.");
+      }
+      showDashboard(u);
+    } catch (err) {
+      document.getElementById("loginLog").innerText = "❌ Gagal memuat data akun:\n" + err.message;
+    }
+  } else {
+    showRegister();
+  }
+})();
+</script>
+</body>
+</html>
