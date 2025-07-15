@@ -31,23 +31,37 @@ clone rpository ini
 Edit bagian seperti di bawah ini sesuai dengan yang ada di repository github dan bot telegram anda
 #
 admin.html:
+#
 `GH_OWNER`
+#
 `GH_REPO`
+#
 `GH_PATH`
+#
 `GH_TOKEN`
 
 game.html:
+#
 `GITHUB_TOKEN`
+#
 `GITHUB_REPO`
+#
 `FILE_PATH`
 
 index.html
+#
 `telegramToken`
+#
 `chatId`
+#
 `GH_OWNER`
+#
 `GH_REPO`
+#
 `GH_PATH`
+#
 `GH_TOKEN`
+#
 #
 Upload semua semua file html kedalam hosting andalan anda. Khusus untuk users.json upload ke repository gihub anda. alasan users.json di upload ke github adalah untuk mempermudah admin jika terjadi bug.
 #
